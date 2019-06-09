@@ -1,1 +1,3 @@
-include("app","dialog")
+include("app")
+include("dialog")
+include("picker")

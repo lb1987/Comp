@@ -47,9 +47,9 @@ configure<PublishExtension> {
     repoName = "wip"
     userOrg = "lib"           //bintray注册的用户名
     groupId = "bai.wip"       //compile引用时的第1部分groupId
-    artifactId = "dialog"     //compile引用时的第2部分项目名
+    artifactId = "picker"     //compile引用时的第2部分项目名
     publishVersion = "0.0.1"  //compile引用时的第3部分版本号
-    desc = "dialog"
+    desc = "picker"
     website = "https://github.com/lb1987/Comp"
 }
 // ./gradlew clean build bintrayUpload -PbintrayUser=lib -PbintrayKey=cf86642ec25f0a86047964447c1e37983d872fa1 -PdryRun=false

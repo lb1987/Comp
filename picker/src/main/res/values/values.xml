@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <attr format="color|reference" name="dividerColor"/>
+    <attr format="float|reference" name="dividerHeight"/>
+    <attr name="dividerType">                                   <!-- wheel 分割线类型 -->
+        <enum name="FILL" value="1"/>
+        <enum name="WRAP" value="2"/>
+    </attr>
+    <attr format="boolean|reference" name="isLoop"/>
+    <attr format="float|reference" name="lineSpaceFactor"/>
+    <attr format="color|reference" name="textColorCenter"/>
+    <attr format="color|reference" name="textColorSide"/>
+    <attr format="dimension|reference" name="textSize"/>
+
+    <declare-styleable name="DatePicker">
+
+        <!-- wheel -->
+        <attr name="isLoop"/>
+        <attr name="lineSpaceFactor"/>
+        <attr name="textColorCenter"/>
+        <attr name="textColorSide"/>
+        <attr name="textSize"/>
+        <attr name="dividerColor"/>
+        <attr name="dividerHeight"/>
+        <attr name="dividerType"/>
+
+        <!-- picker -->
+        <attr format="enum" name="type">        <!-- picker类型 -->
+            <enum name="DATE" value="1"/>
+            <enum name="TIME" value="2"/>
+            <enum name="ALL" value="3"/>
+        </attr>
+
+    </declare-styleable>
+    <declare-styleable name="OptionPicker">
+
+        <!-- wheel -->
+        <attr name="isLoop"/>
+        <attr name="lineSpaceFactor"/>
+        <attr name="textColorCenter"/>
+        <attr name="textColorSide"/>
+        <attr name="textSize"/>
+        <attr name="dividerColor"/>
+        <attr name="dividerHeight"/>
+        <attr name="dividerType"/>
+
+        <!-- picker -->
+        <attr format="boolean|reference" name="isLink"/>       <!-- 是否级联 -->
+    </declare-styleable>
+    <declare-styleable name="Wheel">
+        <attr name="gravity">
+            <enum name="center" value="17"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="5"/>
+        </attr>
+
+        <attr name="textSize"/>
+        <attr name="textColorSide"/>
+        <attr name="textColorCenter"/>
+        <attr format="color" name="divColor"/>
+        <attr name="lineSpaceFactor"/>
+
+    </declare-styleable>
+</resources>
