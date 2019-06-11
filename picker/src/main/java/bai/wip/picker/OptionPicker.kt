@@ -141,6 +141,14 @@ class OptionPicker : LinearLayout {
                     yWheel.isVisible = true
                     val yData = yList[index]
                     yWheel.adapter = ListWheelAdapter(yData)
+                    var yIndex = yWheel.currentItem
+                    // 要设置当前值
+                    yIndex = if (yIndex >= yList[index].size - 1) {
+                        yList[index].size - 1
+                    } else {
+                        yIndex
+                    }
+                    yWheel.currentItem = yIndex
 
                     when {
 
@@ -149,6 +157,15 @@ class OptionPicker : LinearLayout {
                             val yIndex = yWheel.currentItem
                             val zData = zList[index][yIndex]
                             zWheel.adapter = ListWheelAdapter(zData)
+
+                            var zIndex = zWheel.currentItem
+                            // 要设置当前值
+                            zIndex = if (zIndex >= zList[index][yIndex].size - 1) {
+                                zList[index][yIndex].size - 1
+                            } else {
+                                zIndex
+                            }
+                            zWheel.currentItem = zIndex
                         }
 
                         else -> {
@@ -172,6 +189,7 @@ class OptionPicker : LinearLayout {
         } else {
             yWheel.isVisible = true
             yWheel.adapter = ListWheelAdapter(yList[0])
+
             yWheel.setOnItemChangedListener { index ->
                 when {
                     zList != null -> {
@@ -179,6 +197,15 @@ class OptionPicker : LinearLayout {
                         val xIndex = xWheel.currentItem
                         val zData = zList[xIndex][index]
                         zWheel.adapter = ListWheelAdapter(zData)
+
+                        var zIndex = zWheel.currentItem
+                        // 要设置当前值
+                        zIndex = if (zIndex >= zList[xIndex][index].size - 1) {
+                            zList[xIndex][index].size - 1
+                        } else {
+                            zIndex
+                        }
+                        zWheel.currentItem = zIndex
                     }
 
                     else -> {
