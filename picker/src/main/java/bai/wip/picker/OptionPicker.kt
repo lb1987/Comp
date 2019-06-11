@@ -137,34 +137,29 @@ class OptionPicker : LinearLayout {
         xWheel.adapter = ListWheelAdapter(xList)
         xWheel.setOnItemChangedListener { index ->
             when {
-                zList != null && yList != null -> {
-                    yWheel.isVisible = true
-                    zWheel.isVisible = true
-
-                    val yData = yList[index]
-                    yWheel.adapter = ListWheelAdapter(yData)
-
-                    val yIndex = yWheel.currentItem
-                    val zData = zList[index][yIndex]
-                    zWheel.adapter = ListWheelAdapter(zData)
-
-                }
                 yList != null -> {
                     yWheel.isVisible = true
-                    zWheel.isVisible = false
-
                     val yData = yList[index]
                     yWheel.adapter = ListWheelAdapter(yData)
+
+                    when {
+
+                        zList != null -> {
+                            zWheel.isVisible = true
+                            val yIndex = yWheel.currentItem
+                            val zData = zList[index][yIndex]
+                            zWheel.adapter = ListWheelAdapter(zData)
+                        }
+
+                        else -> {
+                            zWheel.isVisible = false
+                        }
+                    }
                 }
+
                 else -> {
                     yWheel.isVisible = false
-                    zWheel.isVisible = false
                 }
-            }
-
-            zWheel.setOnItemChangedListener {
-                val triple = getOption<T>()
-                listener?.invoke(triple.first, triple.second, triple.third)
             }
 
             val triple = getOption<T>()

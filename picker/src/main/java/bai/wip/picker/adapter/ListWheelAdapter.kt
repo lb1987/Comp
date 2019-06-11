@@ -9,7 +9,7 @@ class ListWheelAdapter<T>(
     override fun getItemsCount(): Int = items.size
 
     override fun getItem(index: Int): T? =
-        if (index in 0..items.size) {
+        if (index in 0 until items.size) {
             items[index]
         } else {
             null
