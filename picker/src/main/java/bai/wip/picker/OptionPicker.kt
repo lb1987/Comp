@@ -135,47 +135,37 @@ class OptionPicker : LinearLayout {
     ) {
         // x 滚轮
         xWheel.adapter = ListWheelAdapter(xList)
+        xWheel.currentItem = xWheel.currentItem
         xWheel.setOnItemChangedListener { index ->
-            when {
-                yList != null -> {
-                    yWheel.isVisible = true
-                    val yData = yList[index]
-                    yWheel.adapter = ListWheelAdapter(yData)
-                    var yIndex = yWheel.currentItem
-                    // 要设置当前值
-                    yIndex = if (yIndex >= yList[index].size - 1) {
-                        yList[index].size - 1
-                    } else {
-                        yIndex
-                    }
-                    yWheel.currentItem = yIndex
+            if (yList == null || index > yList.size - 1) {
+                yWheel.isVisible = false
+                zWheel.isVisible = false
+            } else {
+                yWheel.isVisible = true
 
-                    when {
+                yWheel.adapter = ListWheelAdapter(yList[index])
 
-                        zList != null -> {
-                            zWheel.isVisible = true
-                            val yIndex = yWheel.currentItem
-                            val zData = zList[index][yIndex]
-                            zWheel.adapter = ListWheelAdapter(zData)
-
-                            var zIndex = zWheel.currentItem
-                            // 要设置当前值
-                            zIndex = if (zIndex >= zList[index][yIndex].size - 1) {
-                                zList[index][yIndex].size - 1
-                            } else {
-                                zIndex
-                            }
-                            zWheel.currentItem = zIndex
-                        }
-
-                        else -> {
-                            zWheel.isVisible = false
-                        }
-                    }
+                val yIndex = yWheel.currentItem
+                yWheel.currentItem = if (yIndex >= yList[index].size - 1) {
+                    yList[index].size - 1
+                } else {
+                    yIndex
                 }
 
-                else -> {
-                    yWheel.isVisible = false
+                if (zList == null) {
+                    zWheel.isVisible = false
+                } else {
+                    zWheel.isVisible = true
+                    val yCurrent = yWheel.currentItem
+                    val zData = zList[index][yCurrent]
+                    zWheel.adapter = ListWheelAdapter(zData)
+
+                    val zIndex = zWheel.currentItem
+                    zWheel.currentItem = if (zIndex >= zData.size - 1) {
+                        zData.size - 1
+                    } else {
+                        zIndex
+                    }
                 }
             }
 
@@ -189,27 +179,21 @@ class OptionPicker : LinearLayout {
         } else {
             yWheel.isVisible = true
             yWheel.adapter = ListWheelAdapter(yList[0])
-
+            yWheel.currentItem = yWheel.currentItem
             yWheel.setOnItemChangedListener { index ->
-                when {
-                    zList != null -> {
-                        zWheel.isVisible = true
-                        val xIndex = xWheel.currentItem
-                        val zData = zList[xIndex][index]
-                        zWheel.adapter = ListWheelAdapter(zData)
+                val xIndex = xWheel.currentItem
+                if (zList == null || index > zList[xIndex].size - 1) {
+                    zWheel.isVisible = false
+                } else {
+                    zWheel.isVisible = true
+                    val zData = zList[xIndex][index]
+                    zWheel.adapter = ListWheelAdapter(zData)
 
-                        var zIndex = zWheel.currentItem
-                        // 要设置当前值
-                        zIndex = if (zIndex >= zList[xIndex][index].size - 1) {
-                            zList[xIndex][index].size - 1
-                        } else {
-                            zIndex
-                        }
-                        zWheel.currentItem = zIndex
-                    }
-
-                    else -> {
-                        zWheel.isVisible = false
+                    val zIndex = zWheel.currentItem
+                    zWheel.currentItem = if (zIndex >= zData.size - 1) {
+                        zData.size - 1
+                    } else {
+                        zIndex
                     }
                 }
 
@@ -224,6 +208,7 @@ class OptionPicker : LinearLayout {
         } else {
             zWheel.isVisible = true
             zWheel.adapter = ListWheelAdapter(zList[0][0])
+            zWheel.currentItem = zWheel.currentItem
             zWheel.setOnItemChangedListener {
                 val triple = getOption<T>()
                 listener?.invoke(triple.first, triple.second, triple.third)
@@ -279,7 +264,6 @@ class OptionPicker : LinearLayout {
 
     }
 //</editor-fold>
-
 
     @Suppress("UNCHECKED_CAST")
     private fun <T> getOption(): Triple<T, T?, T?> {
