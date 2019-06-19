@@ -21,7 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven("https://dl.bintray.com/lib/wip")
+        //maven("https://dl.bintray.com/lib/wip")
     }
 }
 
