@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/upperIV"
+            motion:layout_constraintCircleRadius="0dp" />
+
+        <Constraint
+            android:id="@+id/middleIV"
+            motion:layout_constraintCircleRadius="0dp" />
+
+        <Constraint
+            android:id="@+id/underIV"
+            motion:layout_constraintCircleRadius="0dp" />
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/upperIV"
+            motion:layout_constraintCircleRadius="90dp" />
+
+        <Constraint
+            android:id="@+id/middleIV"
+            motion:layout_constraintCircleRadius="90dp" />
+
+        <Constraint
+            android:id="@+id/underIV"
+            motion:layout_constraintCircleRadius="90dp" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="2000">
+        <OnClick
+            motion:clickAction="transitionToEnd"
+            motion:targetId="@+id/centerIV" />
+    </Transition>
+
+</MotionScene>

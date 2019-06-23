@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.motion.widget.MotionLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/upperIV"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_oval_purple_48dp"
+        android:scaleType="center"
+        android:tint="@android:color/white"
+        app:layout_constraintCircle="@+id/centerIV"
+        app:layout_constraintCircleAngle="0"
+        app:layout_constraintCircleRadius="90dp"
+        app:srcCompat="@drawable/ic_round_create_24px" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/middleIV"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_oval_orange_48dp"
+        android:scaleType="center"
+        android:tint="@android:color/white"
+        app:layout_constraintCircle="@+id/centerIV"
+        app:layout_constraintCircleAngle="315"
+        app:layout_constraintCircleRadius="90dp"
+        app:srcCompat="@drawable/ic_round_mail_24px" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/underIV"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_oval_green_48dp"
+        android:scaleType="center"
+        android:tint="@android:color/white"
+        app:layout_constraintCircle="@+id/centerIV"
+        app:layout_constraintCircleAngle="270"
+        app:layout_constraintCircleRadius="90dp"
+        app:srcCompat="@drawable/ic_round_send_24px" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/centerIV"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/shape_oval_blue_56dp"
+        android:scaleType="center"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_round_add_24px" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
