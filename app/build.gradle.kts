@@ -37,12 +37,13 @@ dependencies {
     implementation("com.google.android.material:material:1.0.0")
     implementation(kotlin("stdlib-jdk8", KotlinCompilerVersion.VERSION))
     implementation(kotlin("reflect", KotlinCompilerVersion.VERSION))
- 
+
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test:runner:1.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
     implementation(project(path = ":dialog"))
     implementation(project(path = ":picker"))
+    implementation(project(path = ":radio"))
     //implementation("bai.wip:picker:0.0.2")
     //implementation("org.jetbrains.anko:anko:0.10.8")
 

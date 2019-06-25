@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    app:layoutDescription="@xml/radio_scene">
 
 
     <androidx.appcompat.widget.AppCompatImageView

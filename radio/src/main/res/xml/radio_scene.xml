@@ -4,14 +4,26 @@
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/upperIV"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            motion:layout_constraintCircle="@+id/centerIV"
+            motion:layout_constraintCircleAngle="0"
             motion:layout_constraintCircleRadius="0dp" />
 
         <Constraint
             android:id="@+id/middleIV"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            motion:layout_constraintCircle="@+id/centerIV"
+            motion:layout_constraintCircleAngle="315"
             motion:layout_constraintCircleRadius="0dp" />
 
         <Constraint
             android:id="@+id/underIV"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            motion:layout_constraintCircle="@+id/centerIV"
+            motion:layout_constraintCircleAngle="270"
             motion:layout_constraintCircleRadius="0dp" />
     </ConstraintSet>
 
@@ -19,23 +31,47 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/upperIV"
-            motion:layout_constraintCircleRadius="90dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/shape_oval_purple_48dp"
+            android:scaleType="center"
+            android:tint="@android:color/white"
+            motion:layout_constraintCircle="@+id/centerIV"
+            motion:layout_constraintCircleAngle="0"
+            motion:layout_constraintCircleRadius="90dp"
+            motion:srcCompat="@drawable/ic_round_create_24px" />
 
         <Constraint
             android:id="@+id/middleIV"
-            motion:layout_constraintCircleRadius="90dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/shape_oval_orange_48dp"
+            android:scaleType="center"
+            android:tint="@android:color/white"
+            motion:layout_constraintCircle="@+id/centerIV"
+            motion:layout_constraintCircleAngle="315"
+            motion:layout_constraintCircleRadius="90dp"
+            motion:srcCompat="@drawable/ic_round_mail_24px" />
 
         <Constraint
             android:id="@+id/underIV"
-            motion:layout_constraintCircleRadius="90dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/shape_oval_green_48dp"
+            android:scaleType="center"
+            android:tint="@android:color/white"
+            motion:layout_constraintCircle="@+id/centerIV"
+            motion:layout_constraintCircleAngle="270"
+            motion:layout_constraintCircleRadius="90dp"
+            motion:srcCompat="@drawable/ic_round_send_24px" />
     </ConstraintSet>
 
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@+id/start"
-        motion:duration="2000">
+        motion:duration="800">
         <OnClick
-            motion:clickAction="transitionToEnd"
+            motion:clickAction="toggle"
             motion:targetId="@+id/centerIV" />
     </Transition>
 
