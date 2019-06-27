@@ -1,15 +1,13 @@
 package bai.wip.radio
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.android.synthetic.main.radio.view.*
-import java.util.zip.Inflater
 
 class Radio @JvmOverloads constructor(
         context: Context,
@@ -28,34 +26,63 @@ class Radio @JvmOverloads constructor(
         setListener()
     }
 
-    /*
-       <attr name="centerBackgroundColor" format="color|reference" />
-        <attr name="upperBackgroundColor" format="color|reference" />
-        <attr name="middleBackgroundColor" format="color|reference" />
-        <attr name="underBackgroundColor" format="color|reference" />
-        <attr name="centerSrc" format="reference" />
-        <attr name="upperSrc" format="reference" />
-        <attr name="middleSrc" format="reference" />
-        <attr name="underSrc" format="reference" />
-        <attr name="centerSize" format="dimension|reference" />
-        <attr name="upperSize" format="dimension|reference" />
-        <attr name="middleSize" format="dimension|reference" />
-        <attr name="underSize" format="dimension|reference" />
-        <attr name≤="radioSize" format="dimension|reference" />
-     */
-    private var mCenterBackgroundColor =
-            ResourcesCompat.getDrawable(context.resources, R.drawable.shape_oval_blue_56dp, null)
+    private lateinit var mCenterBackground: Drawable
+    private lateinit var mUpperBackground: Drawable
+    private lateinit var mMiddleBackground: Drawable
+    private lateinit var mUnderBackground: Drawable
+    private lateinit var mCenterIcon: Drawable
+    private lateinit var mUpperIcon: Drawable
+    private lateinit var mMiddleIcon: Drawable
+    private lateinit var mUnderIcon: Drawable
+    private var mCenterSize = 0
+    private var mUpperSize = 0
+    private var mMiddleSize = 0
+    private var mUnderSize = 0
+
 
     private fun initAttr(attrs: AttributeSet?, defStyle: Int) {
         val a = context.obtainStyledAttributes(attrs, R.styleable.Radio, defStyle, 0)
-        mCenterBackgroundColor = a.getDrawable(R.styleable.Radio_centerBackgroundColor)
+        mCenterBackground = a.getDrawable(R.styleable.Radio_centerBackground)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.shape_oval_blue_56dp, null)!!
+
+        mUpperBackground = a.getDrawable(R.styleable.Radio_upperBackground)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.shape_oval_purple_48dp, null)!!
+
+        mMiddleBackground = a.getDrawable(R.styleable.Radio_middleBackground)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.shape_oval_orange_48dp, null)!!
+
+        mUnderBackground = a.getDrawable(R.styleable.Radio_underBackground)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.shape_oval_green_48dp, null)!!
+
+        mCenterIcon = a.getDrawable(R.styleable.Radio_centerIcon)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.ic_round_center_24px, null)!!
+
+        mUpperIcon = a.getDrawable(R.styleable.Radio_upperIcon)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.ic_round_upper_24px, null)!!
+
+        mMiddleIcon = a.getDrawable(R.styleable.Radio_middleIcon)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.ic_round_middle_24px, null)!!
+
+        mUnderIcon = a.getDrawable(R.styleable.Radio_underIcon)
+                ?: ResourcesCompat.getDrawable(context.resources, R.drawable.ic_round_under_24px, null)!!
+
+        mCenterSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 56)
+        mUpperSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 48)
+        mMiddleSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 48)
+        mUnderSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 48)
+
         a.recycle()
     }
 
     private fun initUI() {
-        if (mCenterBackgroundColor != null) {
-            centerIV.background = mCenterBackgroundColor
-        }
+        centerIV.background = mCenterBackground
+        upperIV.background = mUpperBackground
+        middleIV.background = mMiddleBackground
+        underIV.background = mUnderBackground
+        centerIV.setImageDrawable(mCenterIcon)
+        upperIV.setImageDrawable(mUpperIcon)
+        middleIV.setImageDrawable(mMiddleIcon)
+        underIV.setImageDrawable(mUnderIcon)
     }
 
     private fun setListener() {
@@ -100,6 +127,4 @@ class Radio @JvmOverloads constructor(
         mMiddleClickListener = middleClickListener
         mUnderClickListener = underClickListener
     }
-
-
 }

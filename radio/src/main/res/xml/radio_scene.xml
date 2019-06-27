@@ -55,7 +55,7 @@
             motion:layout_constraintCircle="@+id/centerIV"
             motion:layout_constraintCircleAngle="0"
             motion:layout_constraintCircleRadius="90dp"
-            motion:srcCompat="@drawable/ic_round_create_24px" />
+            motion:srcCompat="@drawable/ic_round_upper_24px" />
 
         <Constraint
             android:id="@+id/middleIV"
@@ -67,7 +67,7 @@
             motion:layout_constraintCircle="@+id/centerIV"
             motion:layout_constraintCircleAngle="315"
             motion:layout_constraintCircleRadius="90dp"
-            motion:srcCompat="@drawable/ic_round_mail_24px" />
+            motion:srcCompat="@drawable/ic_round_middle_24px" />
 
         <Constraint
             android:id="@+id/underIV"
@@ -79,7 +79,7 @@
             motion:layout_constraintCircle="@+id/centerIV"
             motion:layout_constraintCircleAngle="270"
             motion:layout_constraintCircleRadius="90dp"
-            motion:srcCompat="@drawable/ic_round_send_24px" />
+            motion:srcCompat="@drawable/ic_round_under_24px" />
     </ConstraintSet>
 
     <Transition

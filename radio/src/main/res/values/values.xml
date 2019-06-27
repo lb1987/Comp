@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Radio">
-        <attr name="centerBackgroundColor" format="color|reference" />
-        <attr name="upperBackgroundColor" format="color|reference" />
-        <attr name="middleBackgroundColor" format="color|reference" />
-        <attr name="underBackgroundColor" format="color|reference" />
-        <attr name="centerSrc" format="reference" />
-        <attr name="upperSrc" format="reference" />
-        <attr name="middleSrc" format="reference" />
-        <attr name="underSrc" format="reference" />
+        <attr name="centerBackground" format="reference" />
+        <attr name="upperBackground" format="reference" />
+        <attr name="middleBackground" format="reference" />
+        <attr name="underBackground" format="reference" />
+
+        <attr name="centerIcon" format="reference" />
+        <attr name="upperIcon" format="reference" />
+        <attr name="middleIcon" format="reference" />
+        <attr name="underIcon" format="reference" />
+
         <attr name="centerSize" format="dimension|reference" />
         <attr name="upperSize" format="dimension|reference" />
         <attr name="middleSize" format="dimension|reference" />
