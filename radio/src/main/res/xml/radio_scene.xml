@@ -3,6 +3,14 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
     <ConstraintSet android:id="@+id/start">
         <Constraint
+            android:id="@+id/centerIV"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:rotation="0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+
+        <Constraint
             android:id="@+id/upperIV"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -29,6 +37,14 @@
 
 
     <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/centerIV"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:rotation="45"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+
         <Constraint
             android:id="@+id/upperIV"
             android:layout_width="48dp"
@@ -69,7 +85,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@+id/start"
-        motion:duration="800">
+        motion:duration="600">
         <OnClick
             motion:clickAction="toggle"
             motion:targetId="@+id/centerIV" />
