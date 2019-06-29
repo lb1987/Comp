@@ -11,7 +11,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*optionBottomBTN2.setOnClickListener {
+
+        optionBottomBTN2.setOnClickListener {
             val xOptions = listOf("x", "y", "z", "l", "m", "n")
             val yOptions = listOf("x", "y", "z", "l", "m", "n")
             val zOptions = listOf("x", "y", "z", "l", "m", "n")
@@ -63,15 +64,15 @@ class MainActivity : AppCompatActivity() {
             ) { x, y, z ->
                 Log.i("bail", "x is $x, y is $y, z is $z")
             }
-        }*/
+        }
 
         // 底部日期选择器
-        /*dateBottomBTN.setOnClickListener {
+        dateBottomBTN.setOnClickListener {
 
             dateBottomDialog("请选择时间") { date ->
                 Log.i("bail", "date is $date")
             }
-        }*/
+        }
     }
 
 

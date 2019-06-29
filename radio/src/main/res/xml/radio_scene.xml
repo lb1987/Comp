@@ -6,6 +6,8 @@
             android:id="@+id/centerIV"
             android:layout_width="56dp"
             android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:rotation="0"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent" />
@@ -33,6 +35,34 @@
             motion:layout_constraintCircle="@+id/centerIV"
             motion:layout_constraintCircleAngle="270"
             motion:layout_constraintCircleRadius="0dp" />
+
+        <Constraint
+            android:id="@+id/upperTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@+id/upperIV"
+            motion:layout_constraintStart_toStartOf="@+id/upperIV"
+            motion:layout_constraintTop_toBottomOf="@+id/upperIV" />
+
+        <Constraint
+            android:id="@+id/middleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@+id/middleIV"
+            motion:layout_constraintStart_toStartOf="@+id/middleIV"
+            motion:layout_constraintTop_toBottomOf="@+id/middleIV" />
+
+        <Constraint
+            android:id="@+id/underTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            motion:layout_constraintEnd_toEndOf="@+id/underIV"
+            motion:layout_constraintStart_toStartOf="@+id/underIV"
+            motion:layout_constraintTop_toBottomOf="@+id/underIV" />
+
     </ConstraintSet>
 
 
@@ -41,6 +71,8 @@
             android:id="@+id/centerIV"
             android:layout_width="56dp"
             android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:rotation="45"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent" />
@@ -80,6 +112,34 @@
             motion:layout_constraintCircleAngle="270"
             motion:layout_constraintCircleRadius="90dp"
             motion:srcCompat="@drawable/ic_round_under_24px" />
+
+        <Constraint
+            android:id="@+id/upperTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@+id/upperIV"
+            motion:layout_constraintStart_toStartOf="@+id/upperIV"
+            motion:layout_constraintTop_toBottomOf="@+id/upperIV" />
+
+        <Constraint
+            android:id="@+id/middleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@+id/middleIV"
+            motion:layout_constraintStart_toStartOf="@+id/middleIV"
+            motion:layout_constraintTop_toBottomOf="@+id/middleIV" />
+
+        <Constraint
+            android:id="@+id/underTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintEnd_toEndOf="@+id/underIV"
+            motion:layout_constraintStart_toStartOf="@+id/underIV"
+            motion:layout_constraintTop_toBottomOf="@+id/underIV" />
+
     </ConstraintSet>
 
     <Transition

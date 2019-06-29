@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/radio"
-    android:layout_width="148dp"
-    android:layout_height="148dp"
-    app:layoutDescription="@xml/radio_scene">
+    android:layout_width="172dp"
+    android:layout_height="172dp"
+    app:layoutDescription="@xml/radio_scene"
+    tools:ignore="SpUsage">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/upperIV"
@@ -48,10 +49,42 @@
         android:id="@+id/centerIV"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/shape_oval_blue_56dp"
         android:scaleType="center"
         android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_round_center_24px" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/upperTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="上面"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/upperIV"
+        app:layout_constraintStart_toStartOf="@+id/upperIV"
+        app:layout_constraintTop_toBottomOf="@+id/upperIV" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/middleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中间"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/middleIV"
+        app:layout_constraintStart_toStartOf="@+id/middleIV"
+        app:layout_constraintTop_toBottomOf="@+id/middleIV" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/underTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下面"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/underIV"
+        app:layout_constraintStart_toStartOf="@+id/underIV"
+        app:layout_constraintTop_toBottomOf="@+id/underIV" />
 </androidx.constraintlayout.motion.widget.MotionLayout>

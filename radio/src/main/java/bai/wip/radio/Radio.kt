@@ -14,10 +14,6 @@ class Radio @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-    private var mCurrentClickListener = -1
-    private var mUpperClickListener: (() -> Unit)? = null
-    private var mMiddleClickListener: (() -> Unit)? = null
-    private var mUnderClickListener: (() -> Unit)? = null
 
     init {
         View.inflate(context, R.layout.radio, this)
@@ -25,6 +21,11 @@ class Radio @JvmOverloads constructor(
         initUI()
         setListener()
     }
+
+    private var mCurrentClickMarker = -1
+    private var mUpperClickListener: (() -> Unit)? = null
+    private var mMiddleClickListener: (() -> Unit)? = null
+    private var mUnderClickListener: (() -> Unit)? = null
 
     private lateinit var mCenterBackground: Drawable
     private lateinit var mUpperBackground: Drawable
@@ -34,11 +35,6 @@ class Radio @JvmOverloads constructor(
     private lateinit var mUpperIcon: Drawable
     private lateinit var mMiddleIcon: Drawable
     private lateinit var mUnderIcon: Drawable
-    private var mCenterSize = 0
-    private var mUpperSize = 0
-    private var mMiddleSize = 0
-    private var mUnderSize = 0
-
 
     private fun initAttr(attrs: AttributeSet?, defStyle: Int) {
         val a = context.obtainStyledAttributes(attrs, R.styleable.Radio, defStyle, 0)
@@ -66,11 +62,6 @@ class Radio @JvmOverloads constructor(
         mUnderIcon = a.getDrawable(R.styleable.Radio_underIcon)
                 ?: ResourcesCompat.getDrawable(context.resources, R.drawable.ic_round_under_24px, null)!!
 
-        mCenterSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 56)
-        mUpperSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 48)
-        mMiddleSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 48)
-        mUnderSize = a.getDimensionPixelSize(R.styleable.Radio_centerSize, 48)
-
         a.recycle()
     }
 
@@ -79,6 +70,7 @@ class Radio @JvmOverloads constructor(
         upperIV.background = mUpperBackground
         middleIV.background = mMiddleBackground
         underIV.background = mUnderBackground
+
         centerIV.setImageDrawable(mCenterIcon)
         upperIV.setImageDrawable(mUpperIcon)
         middleIV.setImageDrawable(mMiddleIcon)
@@ -87,21 +79,21 @@ class Radio @JvmOverloads constructor(
 
     private fun setListener() {
         upperIV.setOnClickListener {
-            mCurrentClickListener = 0
+            mCurrentClickMarker = 0
             radio.transitionToStart()
         }
         middleIV.setOnClickListener {
-            mCurrentClickListener = 1
+            mCurrentClickMarker = 1
             radio.transitionToStart()
         }
         underIV.setOnClickListener {
-            mCurrentClickListener = 2
+            mCurrentClickMarker = 2
             radio.transitionToStart()
         }
 
         radio.setTransitionListener(object : SimpleTransitionListener() {
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                when (mCurrentClickListener) {
+                when (mCurrentClickMarker) {
                     0 -> {
                         mUpperClickListener?.invoke()
                     }
