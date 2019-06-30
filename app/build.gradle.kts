@@ -39,8 +39,22 @@ dependencies {
     implementation(kotlin("reflect", KotlinCompilerVersion.VERSION))
 
     testImplementation("junit:junit:4.12")
+
+    // test
+    androidTestImplementation("androidx.test:core:1.2.0")
     androidTestImplementation("androidx.test:runner:1.2.0")
+    androidTestImplementation("androidx.test:rules:1.2.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.1")
+    androidTestImplementation("androidx.test.ext:truth:1.2.0")
+    androidTestImplementation("com.google.truth:truth:0.42")
+
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.2.0")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.2.0")
+    androidTestImplementation("androidx.test.espresso:espresso-accessibility:3.2.0")
+    androidTestImplementation("androidx.test.espresso:espresso-web:3.2.0")
+    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:3.2.0")
+
     implementation(project(path = ":dialog"))
     implementation(project(path = ":picker"))
     implementation(project(path = ":radio"))

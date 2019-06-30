@@ -7,13 +7,22 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import bai.wip.picker.adapter.ListWheelAdapter
+import bai.wip.wheel.interfaces.Tag
 import bai.wip.wheel.view.Wheel
 import kotlinx.android.synthetic.main.option_picker.view.*
 
-class OptionPicker : LinearLayout {
+class OptionPicker @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
+) : LinearLayout(
+    context,
+    attrs,
+    defStyle
+) {
 
     private var isLoop = false
-    private var isLink = true
+    private var isCascade = true
     private var mTextSize: Int = 17
     private var mTextColorSide: Int = Color.GRAY
     private var mTextColorCenter: Int = Color.BLACK
@@ -22,15 +31,7 @@ class OptionPicker : LinearLayout {
     private var mDividerColor = Color.GRAY
     private var mDividerType = DIVIDER_TYPE_FILL
 
-    constructor(context: Context) : this(context, null)
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-
-    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
-        context,
-        attrs,
-        defStyle
-    ) {
+    init {
         View.inflate(context, R.layout.option_picker, this)
         initAttr(attrs!!, defStyle)
         initWheelAttr()
@@ -46,8 +47,6 @@ class OptionPicker : LinearLayout {
         mDividerColor = a.getColor(R.styleable.OptionPicker_dividerColor, Color.GRAY)
         mDividerHeight = a.getFloat(R.styleable.OptionPicker_dividerHeight, 1.0f)
         mDividerType = a.getInt(R.styleable.OptionPicker_dividerType, DIVIDER_TYPE_FILL)
-
-        isLink = a.getBoolean(R.styleable.OptionPicker_isLink, true)
         a.recycle()
     }
 
@@ -119,19 +118,25 @@ class OptionPicker : LinearLayout {
         zWheel.setTextSize(mTextSize)
     }
 
-    //<editor-fold desc = "related adapter">
-    fun <T> setRelatedAdapter(adapter: RelatedAdapter<T>) {
-        val xList = adapter.xList
-        val yList = adapter.yList
-        val zList = adapter.zList
-        initRelatedData(xList, yList, zList, adapter.listener)
+    @Suppress("UNCHECKED_CAST")
+    private fun <X : Tag, Y : Tag, Z : Tag> getOption(): Triple<X, Y?, Z?> {
+        val x = xWheel.adapter.getItem(xWheel.currentItem) as X
+        val y = yWheel.adapter?.getItem(yWheel.currentItem) as? Y?
+        val z = zWheel.adapter?.getItem(zWheel.currentItem) as? Z?
+        return Triple(x, y, z)
     }
 
-    private fun <T> initRelatedData(
-        xList: List<T>,
-        yList: List<List<T>>? = null,
-        zList: List<List<List<T>>>? = null,
-        listener: ((x: T, y: T?, z: T?) -> Unit)? = null
+    //<editor-fold desc = "Cascade adapter">
+    fun <T : Tag, R : Tag, V : Tag> setCascadeAdapter(adapter: CascadeAdapter<T, R, V>) = with(adapter) {
+        isCascade = true
+        setCascadeScene(xList, yList, zList, listener)
+    }
+
+    private fun <X : Tag, Y : Tag, Z : Tag> setCascadeScene(
+        xList: List<X>,
+        yList: List<List<Y>>? = null,
+        zList: List<List<List<Z>>>? = null,
+        listener: ((x: X, y: Y?, z: Z?) -> Unit)? = null
     ) {
         // x 滚轮
         xWheel.adapter = ListWheelAdapter(xList)
@@ -169,7 +174,7 @@ class OptionPicker : LinearLayout {
                 }
             }
 
-            val triple = getOption<T>()
+            val triple = getOption<X, Y, Z>()
             listener?.invoke(triple.first, triple.second, triple.third)
         }
 
@@ -197,7 +202,7 @@ class OptionPicker : LinearLayout {
                     }
                 }
 
-                val triple = getOption<T>()
+                val triple = getOption<X, Y, Z>()
                 listener?.invoke(triple.first, triple.second, triple.third)
             }
         }
@@ -210,31 +215,29 @@ class OptionPicker : LinearLayout {
             zWheel.adapter = ListWheelAdapter(zList[0][0])
             zWheel.currentItem = zWheel.currentItem
             zWheel.setOnItemChangedListener {
-                val triple = getOption<T>()
+                val triple = getOption<X, Y, Z>()
                 listener?.invoke(triple.first, triple.second, triple.third)
             }
         }
     }
-//</editor-fold>
+    //</editor-fold>
 
-    //<editor-fold desc = "unrelated adapter">
-    fun <T> setUnrelatedAdapter(adapter: UnRelatedAdapter<T>) {
-        val xList = adapter.xList
-        val yList = adapter.yList
-        val zList = adapter.zList
-        initUnRelatedData(xList, yList, zList, adapter.listener)
+    //<editor-fold desc = "Parallel adapter">
+    fun <X : Tag, Y : Tag, Z : Tag> setParallelAdapter(adapter: ParallelAdapter<X, Y, Z>) = with(adapter) {
+        isCascade = false
+        setParallelScene(xList, yList, zList, listener)
     }
 
-    private fun <T> initUnRelatedData(
-        xList: List<T>,
-        yList: List<T>?,
-        zList: List<T>?,
-        listener: ((x: T, y: T?, z: T?) -> Unit)?
+    private fun <X : Tag, Y : Tag, Z : Tag> setParallelScene(
+        xList: List<X>,
+        yList: List<Y>?,
+        zList: List<Z>?,
+        listener: ((x: X, y: Y?, z: Z?) -> Unit)?
     ) {
         // x 滚轮
         xWheel.adapter = ListWheelAdapter(xList)
         xWheel.setOnItemChangedListener {
-            val triple = getOption<T>()
+            val triple = getOption<X, Y, Z>()
             listener?.invoke(triple.first, triple.second, triple.third)
         }
 
@@ -245,7 +248,7 @@ class OptionPicker : LinearLayout {
             yWheel.isVisible = true
             yWheel.adapter = ListWheelAdapter(yList)
             yWheel.setOnItemChangedListener {
-                val triple = getOption<T>()
+                val triple = getOption<X, Y, Z>()
                 listener?.invoke(triple.first, triple.second, triple.third)
             }
         }
@@ -257,34 +260,44 @@ class OptionPicker : LinearLayout {
             zWheel.isVisible = true
             zWheel.adapter = ListWheelAdapter(zList)
             zWheel.setOnItemChangedListener {
-                val triple = getOption<T>()
+                val triple = getOption<X, Y, Z>()
                 listener?.invoke(triple.first, triple.second, triple.third)
             }
         }
 
     }
-//</editor-fold>
+    //</editor-fold>
 
-    @Suppress("UNCHECKED_CAST")
-    private fun <T> getOption(): Triple<T, T?, T?> {
-        val x = xWheel.adapter.getItem(xWheel.currentItem) as T
-        val y = yWheel.adapter?.getItem(yWheel.currentItem) as? T?
-        val z = zWheel.adapter?.getItem(zWheel.currentItem) as? T?
-        return Triple(x, y, z)
+    fun <X : Tag, Y : Tag, Z : Tag> setOption(x: X, y: Y? = null, z: Z? = null) {
+        if (xWheel.adapter != null) {
+            val xIndex = xWheel.adapter.indexOf(x)
+            xWheel.currentItem = xIndex
+
+            if (!isCascade) {
+                if (y != null && yWheel.adapter != null) {
+                    val yIndex = yWheel.adapter.indexOf(y)
+                    yWheel.currentItem = yIndex
+                }
+
+                if (z != null && zWheel.adapter != null) {
+                    val zIndex = zWheel.adapter.indexOf(z)
+                    zWheel.currentItem = zIndex
+                }
+            }
+        }
     }
 
-    data class RelatedAdapter<T>(
-        val xList: List<T>,
-        val yList: List<List<T>>? = null,
-        val zList: List<List<List<T>>>? = null,
-        val listener: ((x: T, y: T?, z: T?) -> Unit)? = null
+    data class CascadeAdapter<X : Tag, Y : Tag, Z : Tag>(
+        val xList: List<X>,
+        val yList: List<List<Y>>? = null,
+        val zList: List<List<List<Z>>>? = null,
+        val listener: ((x: X, y: Y?, z: Z?) -> Unit)? = null
     )
 
-    data class UnRelatedAdapter<T>(
-        val xList: List<T>,
-        val yList: List<T>? = null,
-        val zList: List<T>? = null,
-        val listener: ((x: T, y: T?, z: T?) -> Unit)? = null
+    data class ParallelAdapter<X : Tag, Y : Tag, Z : Tag>(
+        val xList: List<X>,
+        val yList: List<Y>? = null,
+        val zList: List<Z>? = null,
+        val listener: ((x: X, y: Y?, z: Z?) -> Unit)? = null
     )
-
 }

@@ -46,7 +46,6 @@
         <attr name="dividerType"/>
 
         <!-- picker -->
-        <attr format="boolean|reference" name="isLink"/>       <!-- 是否级联 -->
     </declare-styleable>
     <declare-styleable name="Wheel">
         <attr name="gravity">

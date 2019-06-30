@@ -18,7 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import bai.wip.picker.R;
 import bai.wip.wheel.adapter.WheelAdapter;
-import bai.wip.wheel.interfaces.IPickerViewData;
+import bai.wip.wheel.interfaces.Tag;
 import bai.wip.wheel.listener.LoopViewGestureListener;
 import bai.wip.wheel.listener.OnItemChangedListener;
 import bai.wip.wheel.timer.InertiaTimerTask;
@@ -579,8 +579,8 @@ public class Wheel extends View {
     private String getContentText(Object item) {
         if (item == null) {
             return "";
-        } else if (item instanceof IPickerViewData) {
-            return ((IPickerViewData) item).getPickerViewText();
+        } else if (item instanceof Tag) {
+            return ((Tag) item).tag();
         } else if (item instanceof Integer) {
             //如果为整形则最少保留两位数.
             return getFixNum((int) item);

@@ -1,8 +1,9 @@
 package bai.wip.picker.adapter
 
 import bai.wip.wheel.adapter.WheelAdapter
+import bai.wip.wheel.interfaces.Tag
 
-class ListWheelAdapter<T>(
+class ListWheelAdapter<T : Tag>(
     private val items: List<T>
 ) : WheelAdapter<T> {
 
