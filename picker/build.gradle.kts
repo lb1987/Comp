@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(28)
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "0.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,7 +48,7 @@ configure<PublishExtension> {
     userOrg = "lib"           //bintray注册的用户名
     groupId = "bai.wip"       //compile引用时的第1部分groupId
     artifactId = "picker"     //compile引用时的第2部分项目名
-    publishVersion = "0.0.1"  //compile引用时的第3部分版本号
+    publishVersion = "0.0.2"  //compile引用时的第3部分版本号
     desc = "picker"
     website = "https://github.com/lb1987/Comp"
 }
