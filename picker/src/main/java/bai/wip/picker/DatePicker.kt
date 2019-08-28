@@ -589,7 +589,7 @@ class DatePicker : LinearLayout {
             val year = yearWheel.currentItem + mStartYear
             val month = monthWheel.currentItem + 1
             val day = dayWheel.currentItem + 1
-            val hour = dayWheel.currentItem
+            val hour = hourWheel.currentItem
             val minute = minuteWheel.currentItem
             val second = secondWheel.currentItem
             "$year-$month-$day $hour:$minute:$second"
