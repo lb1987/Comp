@@ -9,10 +9,10 @@ plugins {
     kotlin("android.extensions")
 }
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(29)
     defaultConfig {
         minSdkVersion(23)
-        targetSdkVersion(28)
+        targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
 
@@ -34,7 +34,7 @@ android {
 dependencies {
     implementation("androidx.appcompat:appcompat:1.0.2")
     implementation("androidx.core:core-ktx:1.0.2")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta2")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta4")
     implementation("com.google.android.material:material:1.0.0")
     implementation(kotlin("stdlib-jdk8", KotlinCompilerVersion.VERSION))
     implementation(kotlin("reflect", KotlinCompilerVersion.VERSION))
